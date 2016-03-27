@@ -15,6 +15,20 @@ There are better ways of solving the problem than a brute-force solution which i
 complexity .
 */
 
-int findSingleOccurenceNumber(int *A, int len) {
-	return -1;
+int findSingleOccurenceNumber(int *A, int len)
+{
+	if (A == '\0')
+		return -1;
+	int i = 0, j = 0, sum, shifted_index = 0, output = 0;
+	for (i = 0; i < 32; i++){
+		sum = 0;
+		shifted_index = (1 << i);
+			for (j = 0; j < len; j++){
+				if (A[j] & shifted_index)
+					sum++;
+			}
+			if (sum % 3)
+				output = output|shifted_index;
+	}
+	return output;
 }
